@@ -2,15 +2,14 @@ package personnages;
 
 public class Druide {
 	private String nom;
-	private int effetPotionMax;
-	private int effetPotionMin;
+	private int force;
+	private Chaudron chaudron;
 
-	public Druide(String nom, int effetPotionMax, int effetPotionMin) {
+	public Druide(String nom, int force, Chaudron chaudron) {
 		this.nom = nom;
-		this.effetPotionMax = effetPotionMax;
-		this.effetPotionMin = effetPotionMin;
-		parler("Bonjour, je suis le druide" + nom + "et ma potion peut aller dune force" + effetPotionMin + "a"
-				+ effetPotionMax + ".");
+		this.force = force;
+		this.chaudron = chaudron;
+		
 	}
 
 	public String getNom() {
@@ -23,5 +22,22 @@ public class Druide {
 
 	public String prendreParole() {
 		return "Le druide " + nom + " : ";
+	}
+	public void fabriquerPotion(int quantite,int forcePotion) {
+		chaudron.remplirChaudron(quantite, forcePotion);
+		parler("jai concote "+ quantite +"doses de potion magique. Elle a une force de "+ forcePotion +".");
+	}
+	public void boosterGaulois(Gaulois gaulois) {
+		if (chaudron.resterPotion()) {
+			if (gaulois.getNom()=="Obelix") {
+				parler("Non," + gaulois.getNom() + " ! Non Et tu le sais tres bien !");
+			} else {
+				int forcePotion = chaudron.prendreLouche();
+				gaulois.boirePotion(forcePotion);
+				parler("Tiens"+ gaulois.getNom() + ", un peu de potion magique.");
+			}
+		} else {
+			parler("Desole" + gaulois.getNom() + ", il ny a plus une seule goutte de potion.");
+		}
 	}
 }
