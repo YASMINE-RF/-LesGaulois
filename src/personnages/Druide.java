@@ -5,10 +5,10 @@ public class Druide {
 	private int force;
 	private Chaudron chaudron;
 
-	public Druide(String nom, int force, Chaudron chaudron) {
+	public Druide(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
-		this.chaudron = chaudron;
+		this.chaudron =new Chaudron();
 		
 	}
 
