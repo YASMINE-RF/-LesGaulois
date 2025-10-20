@@ -14,6 +14,16 @@ public class Gaulois {
 	public String getNom() {
 		return nom;
 	}
+	
+	public void setVillage(Village village) { 
+		this.village = village;
+	}
+
+	public Village getVillage() {
+		return village;
+	}
+	
+	
     public void parler(String texte) {
     	System.out.println(prendreParole() + "\"" + texte + "\"");
     }
@@ -36,7 +46,24 @@ public class Gaulois {
     	
     }
 	
+    
+    public void sePresenter() {
+		System.out.print("Le Gaulois " + nom + " : \"Bonjour, je m'appelle " + nom + ". ");
 
+		if (village == null) {
+			
+			System.out.println("Je voyage de villages en villages.\"");
+		} else if (village.getChef() == this) {
+			
+			System.out.println("Je suis le chef du village " + village.getNom() + ".\"");
+		} else {
+			
+			System.out.println("J'habite le village " + village.getNom() + ".\"");
+		}
+	}
+
+    
+    
 	@Override
 	public String toString() {
 		return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion=" + effetPotion + "]";
